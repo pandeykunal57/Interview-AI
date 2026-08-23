@@ -1,5 +1,5 @@
 const {Router} = require('express');
-authcontroller = require('../controllers/auth.controller');
+authController = require('../controllers/auth.controller');
 
 const authRouter  = Router();
 
@@ -9,13 +9,21 @@ const authRouter  = Router();
  * @access Public
  */
 
-authRouter.post('/register', authcontroller.registerUserController);
+authRouter.post('/register', authController.registerUserController);
 
 /**
  * @route POST /api/auth/login
  * @description login user with email and password
  * @access Public
  */
-authRouter.post("/login", authcontroller.loginUserController)
+authRouter.post("/login", authController.loginUserController)
+
+
+/**
+ * @route GET /api/auth/logout
+ * @description clear token from user cookie and add the token in blacklist
+ * @access public
+ */
+authRouter.get("/logout", authController.logoutUserController)
 
 module.exports = authRouter;
