@@ -1,5 +1,5 @@
 {
-  "name": "frontend",
+  "name": "Interview AI",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -11,7 +11,9 @@
   },
   "dependencies": {
     "react": "^19.2.8",
-    "react-dom": "^19.2.8"
+    "react-dom": "^19.2.8",
+    "react-router": "^8.3.0",
+    "saas": "^1.0.0"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
@@ -22,6 +24,7 @@
     "eslint-plugin-react-hooks": "^7.1.1",
     "eslint-plugin-react-refresh": "^0.5.4",
     "globals": "^17.11.0",
+    "sass-embedded": "^1.103.1",
     "vite": "^8.2.2"
   }
 }
