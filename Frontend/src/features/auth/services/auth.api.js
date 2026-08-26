@@ -1,9 +1,11 @@
+/* eslint-disable no-empty */
+/* eslint-disable no-unused-vars */
 import axios from "axios"
 
 
 const api = axios.create({
     baseURL: "http://localhost:3000",
-    withCredentials: true
+    withCredentials: true // Used to set token in cookies as axios don't provide by default access to cookies
 })
 
 export async function register({ username, email, password }) {
