@@ -1,7 +1,8 @@
 /* eslint-disable no-unused-vars */
 import { createBrowserRouter } from "react-router";
-import Login from "./features/auth/pages/Login";
+import Login from "./features/auth/pages/login";
 import Register from "./features/auth/pages/Register";
+import Protected from "./features/auth/components/Protected";
 
 
 
@@ -17,7 +18,7 @@ export const router = createBrowserRouter([
     },
     {
         path:"/",
-        element:"<h1> HOME </h1>"
+        element:<Protected> <h1> HOME </h1></Protected>
         
     }
 

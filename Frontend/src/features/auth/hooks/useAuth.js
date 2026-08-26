@@ -49,7 +49,7 @@ export const useAuth = () => {
         }
     }
 
-    useEffect(() => {
+    useEffect(() => { 
 
         const getAndSetUser = async () => {
             try {
