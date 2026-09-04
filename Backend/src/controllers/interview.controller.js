@@ -3,7 +3,9 @@ const generateInterviewReport = require("../services/ai.service")
 const interviewReportModel = require("../models/interviewReport.model")
 
 
-
+/**
+ * @description Controller to generate interview report based on user self description, resume and job description.
+ */
 async function generateInterViewReportController(req, res) {
     
       const resumeContent = await (new pdfParse.PDFParse(Uint8Array.from(req.file.buffer))).getText()
@@ -30,5 +32,25 @@ async function generateInterViewReportController(req, res) {
     })
 }
 
+/**
+ * @description Controller to get interview report by interviewId.
+ */
+async function getInterviewReportByIdController(req, res) {
+      const { interviewId } = req.params
 
-module.exports = { generateInterViewReportController } 
+    const interviewReport = await interviewReportModel.findOne({ _id: interviewId, user: req.user.id })
+
+    if (!interviewReport) {
+        return res.status(404).json({
+            message: "Interview report not found."
+        })
+    }
+
+    res.status(200).json({
+        message: "Interview report fetched successfully.",
+        interviewReport
+    })
+}
+
+
+module.exports = { generateInterViewReportController, getInterviewReportByIdController } 
