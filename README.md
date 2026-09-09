@@ -86,3 +86,8 @@ The application is built using **React.js, Node.js, Express.js, MongoDB, JWT, Go
 ## Project Goal
 
 The goal of this project is to build a real-world full-stack application that combines **backend development with Generative AI** to provide practical tools for resume analysis, job preparation, interview question generation, skill-gap detection, and ATS-optimized resume creation.
+
+<img width="1917" height="910" alt="Screenshot 2026-09-09 164033" src="https://github.com/user-attachments/assets/cdfa7691-e9ed-4241-a05b-4a440edbb029" />
+<img width="1917" height="912" alt="Screenshot 2026-09-09 164021" src="https://github.com/user-attachments/assets/96a061bf-2c00-4222-841f-f1d0eb1712c7" />
+<img width="1917" height="916" alt="Screenshot 2026-09-09 164007" src="https://github.com/user-attachments/assets/c1d2d8fd-37e6-4f79-b9f5-c0f47fc44cbb" />
+<img width="1917" height="921" alt="Screenshot 2026-09-09 163917" src="https://github.com/user-attachments/assets/08127182-5360-49fc-8b11-53577fba9433" />
