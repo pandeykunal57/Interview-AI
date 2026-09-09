@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React, { useState, useRef } from 'react'
 import "../style/home.scss"
 import { useInterview } from '../hooks/useInterview.js'
@@ -6,6 +5,7 @@ import { useNavigate } from 'react-router'
 
 const Home = () => {
 
+    // Get report generation state and previously generated reports from the interview context.
     const { loading, generateReport,reports } = useInterview()
     const [ jobDescription, setJobDescription ] = useState("")
     const [ selfDescription, setSelfDescription ] = useState("")
@@ -14,11 +14,17 @@ const Home = () => {
     const navigate = useNavigate()
 
     const handleGenerateReport = async () => {
+        // Access the selected file directly from the hidden file input.
         const resumeFile = resumeInputRef.current.files[ 0 ]
+
+        // Send the job details and resume to the backend for AI report generation.
         const data = await generateReport({ jobDescription, selfDescription, resumeFile })
+
+        // Navigate to the newly generated report using its database ID.
         navigate(`/interview/${data._id}`)
     }
 
+    // Show a loading screen while the AI report is being generated.
     if (loading) {
         return (
             <main className='loading-screen'>

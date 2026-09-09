@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import React,{useState} from 'react'
 import { useNavigate, Link } from 'react-router'
 import { useAuth } from '../hooks/useAuth'
 
@@ -12,11 +12,17 @@ const Register = () => {
     const {loading,handleRegister} = useAuth()
     
     const handleSubmit = async (e) => {
+        // Prevent the browser from reloading the page on form submission.
         e.preventDefault()
+
+        // Register the user and wait for the API request to complete.
         await handleRegister({username,email,password})
+
+        // Redirect to the home page after registration.
         navigate("/")
     }
 
+    // Display a loading state while the registration request is running.
     if(loading){
         return (<main><h1>Loading.......</h1></main>)
     }
@@ -31,18 +37,21 @@ const Register = () => {
                     <div className="input-group">
                         <label htmlFor="username">Username</label>
                         <input
+                            // Store the latest username input in component state.
                             onChange={(e) => { setUsername(e.target.value) }}
                             type="text" id="username" name='username' placeholder='Enter username' />
                     </div>
                     <div className="input-group">
                         <label htmlFor="email">Email</label>
                         <input
+                            // Store the latest email input in component state.
                             onChange={(e) => { setEmail(e.target.value) }}
                             type="email" id="email" name='email' placeholder='Enter email address' />
                     </div>
                     <div className="input-group">
                         <label htmlFor="password">Password</label>
                         <input
+                            // Store the latest password input in component state.
                             onChange={(e) => { setPassword(e.target.value) }}
                             type="password" id="password" name='password' placeholder='Enter password' />
                     </div>
@@ -51,6 +60,7 @@ const Register = () => {
 
                 </form>
 
+                {/* Navigate to login without triggering a full page reload. */}
                 <p>Already have an account? <Link to={"/login"} >Login</Link> </p>
             </div>
         </main>

@@ -1,102 +1,148 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
 
 
+// Stores technical interview questions along with their purpose and answer.
 const technicalQuestionSchema = new mongoose.Schema({
+
     question: {
         type: String,
-        required: [ true, "Technical question is required" ]
+        required: [true, "Technical question is required"]
     },
+
     intention: {
         type: String,
-        required: [ true, "Intention is required" ]
+        required: [true, "Intention is required"]
     },
+
     answer: {
         type: String,
-        required: [ true, "Answer is required" ]
+        required: [true, "Answer is required"]
     }
+
 }, {
+    // Prevents Mongoose from creating a separate _id for each question.
     _id: false
 })
 
+
+// Stores behavioral interview questions along with their purpose and answer.
 const behavioralQuestionSchema = new mongoose.Schema({
+
     question: {
         type: String,
-        required: [ true, "Behavioral question is required" ]
+        required: [true, "Technical question is required"]
     },
+
     intention: {
         type: String,
-        required: [ true, "Intention is required" ]
+        required: [true, "Intention is required"]
     },
+
     answer: {
         type: String,
-        required: [ true, "Answer is required" ]
+        required: [true, "Answer is required"]
     }
+
 }, {
+    // Prevents Mongoose from creating a separate _id for each question.
     _id: false
 })
 
+
+// Stores skills that are missing or need improvement for the target job.
 const skillGapSchema = new mongoose.Schema({
+
     skill: {
         type: String,
-        required: [ true, "Skill is required" ]
+        required: [true, "Skill is required"]
     },
+
+    // enum restricts severity to these three allowed values.
     severity: {
         type: String,
-        enum: [ "low", "medium", "high" ],
-        required: [ true, "Severity is required" ]
+        enum: ["low", "medium", "high"],
+        required: [true, "Severity is required"]
     }
+
 }, {
+    // Skill gaps are embedded data and don't need their own IDs.
     _id: false
 })
 
+
+// Stores each day's focus and tasks in the personalized preparation plan.
 const preparationPlanSchema = new mongoose.Schema({
+
     day: {
         type: Number,
-        required: [ true, "Day is required" ]
+        required: [true, "Day is required"]
     },
+
     focus: {
         type: String,
-        required: [ true, "Focus is required" ]
+        required: [true, "Focus is required"]
     },
-    tasks: [ {
+
+    // An array of strings allows multiple tasks to be stored for each day.
+    tasks: [{
         type: String,
-        required: [ true, "Task is required" ]
-    } ]
+        required: [true, "Task is required"]
+    }]
 })
 
+
 const interviewReportSchema = new mongoose.Schema({
+
     jobDescription: {
         type: String,
-        required: [ true, "Job description is required" ]
+        required: [true, "Job description is required"]
     },
+
     resume: {
-        type: String,
+        type: String
     },
+
     selfDescription: {
-        type: String,
+        type: String
     },
+
+    // Stores the AI-calculated match percentage between the resume and job.
     matchScore: {
         type: Number,
         min: 0,
-        max: 100,
+        max: 100
     },
-    technicalQuestions: [ technicalQuestionSchema ],
-    behavioralQuestions: [ behavioralQuestionSchema ],
-    skillGaps: [ skillGapSchema ],
-    preparationPlan: [ preparationPlanSchema ],
+
+    // Arrays of subdocuments allow multiple questions to be stored in one report.
+    technicalQuestions: [technicalQuestionSchema],
+
+    behavioralQuestions: [behavioralQuestionSchema],
+
+    skillGaps: [skillGapSchema],
+
+    preparationPlan: [preparationPlanSchema],
+
     user: {
         type: mongoose.Schema.Types.ObjectId,
+
+        // Creates a reference to the users collection for identifying the owner.
         ref: "users"
     },
+
     title: {
         type: String,
-        required: [ true, "Job title is required" ]
+        required: [true, "Job title is required"]
     }
+
 }, {
+    // Automatically adds createdAt and updatedAt fields to every report.
     timestamps: true
 })
 
 
-const interviewReportModel = mongoose.model("InterviewReport", interviewReportSchema);
+// Creates the Mongoose model used to interact with the InterviewReport collection.
+const interviewReportModel = mongoose.model("InterviewReport", interviewReportSchema)
 
-module.exports = interviewReportModel;  
+
+// Export the model so controllers/services can perform database operations.
+module.exports = interviewReportModel

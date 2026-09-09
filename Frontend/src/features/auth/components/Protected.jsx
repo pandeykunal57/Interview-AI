@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { useAuth } from "../hooks/useAuth";
 import { Navigate } from "react-router";
 import React from 'react'
